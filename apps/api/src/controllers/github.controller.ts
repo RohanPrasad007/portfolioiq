@@ -43,6 +43,9 @@ export const getGithubRepos = async (req: AuthRequest, res: Response) => {
     const repos = await fetchTopRepos(githubUsername, req.githubAccessToken);
     return res.status(200).json({ success: true, data: repos });
   } catch (error: any) {
+    if (error.status === 401) {
+      return res.status(401).json({ success: false, error: 'GitHub session expired. Please log in again.' });
+    }
     return res.status(500).json({ success: false, error: error.message });
   }
 };
@@ -80,7 +83,6 @@ export const getGithubProfile = async (req: AuthRequest, res: Response) => {
     const { data: profile } = await octokit.rest.users.getByUsername({
       username: githubUsername,
     });
-    console.log("This is the user ", profile);
 
     // Let's list some repos to calculate total stars and languages
     const { data: repos } = await octokit.rest.repos.listForUser({
@@ -121,7 +123,10 @@ export const getGithubProfile = async (req: AuthRequest, res: Response) => {
       },
     });
   } catch (error: any) {
-    console.log("This is the user error ", error);
+    console.log("This is the error ", error);
+    if (error.status === 401) {
+      return res.status(401).json({ success: false, error: 'GitHub session expired. Please log in again.' });
+    }
     return res.status(500).json({ success: false, error: error.message });
   }
 };

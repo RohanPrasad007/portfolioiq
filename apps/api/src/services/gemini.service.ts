@@ -34,7 +34,7 @@ export const analyzeProfile = async (params: {
   targetJobDescription?: string;
   githubRepos?: GitHubRepoSummary[];
 }): Promise<GeminiAnalysisResult> => {
-  const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+  const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
   const systemPrompt = `
 You are a senior technical recruiter and career coach AI. Analyze the provided developer profile.
