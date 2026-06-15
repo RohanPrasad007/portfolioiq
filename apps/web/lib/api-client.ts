@@ -17,7 +17,8 @@ apiClient.interceptors.request.use(
   async (config) => {
     // If client side, attempt to attach session access token or demo token
     if (typeof window !== 'undefined') {
-      const token = cachedToken || window.localStorage.getItem('demo_token');
+      const demoToken = window.localStorage.getItem('demo_token');
+      const token = demoToken || cachedToken;
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       } else {
@@ -41,6 +42,7 @@ apiClient.interceptors.response.use(
     if (error.response && error.response.status === 401) {
       if (typeof window !== 'undefined') {
         window.localStorage.removeItem('demo_token');
+        cachedToken = '';
         await signOut({ callbackUrl: '/login' });
       }
     }

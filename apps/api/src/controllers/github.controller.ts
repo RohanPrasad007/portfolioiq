@@ -11,6 +11,10 @@ export const getGithubRepos = async (req: AuthRequest, res: Response) => {
       return res.status(400).json({ success: false, error: 'GitHub username not found in session' });
     }
 
+    if (!req.githubAccessToken) {
+      return res.status(401).json({ success: false, error: 'GitHub session expired. Please log in again.' });
+    }
+
     if (req.isDemoMode) {
       return res.status(200).json({
         success: true,
@@ -43,7 +47,7 @@ export const getGithubRepos = async (req: AuthRequest, res: Response) => {
     const repos = await fetchTopRepos(githubUsername, req.githubAccessToken);
     return res.status(200).json({ success: true, data: repos });
   } catch (error: any) {
-    if (error.status === 401) {
+    if (error.status === 401 || error.response?.status === 401) {
       return res.status(401).json({ success: false, error: 'GitHub session expired. Please log in again.' });
     }
     return res.status(500).json({ success: false, error: error.message });
@@ -56,6 +60,10 @@ export const getGithubProfile = async (req: AuthRequest, res: Response) => {
     
     if (!githubUsername) {
       return res.status(400).json({ success: false, error: 'GitHub username not found in session' });
+    }
+    
+    if (!req.githubAccessToken) {
+      return res.status(401).json({ success: false, error: 'GitHub session expired. Please log in again.' });
     }
     
     if (req.isDemoMode) {
@@ -77,7 +85,7 @@ export const getGithubProfile = async (req: AuthRequest, res: Response) => {
     }
     
     // Connect Octokit
-    const token = req.githubAccessToken || env.GITHUB_TOKEN;
+    const token = req.githubAccessToken;
     const octokit = new Octokit({ auth: token });
     
     const { data: profile } = await octokit.rest.users.getByUsername({
@@ -124,7 +132,7 @@ export const getGithubProfile = async (req: AuthRequest, res: Response) => {
     });
   } catch (error: any) {
     console.log("This is the error ", error);
-    if (error.status === 401) {
+    if (error.status === 401 || error.response?.status === 401) {
       return res.status(401).json({ success: false, error: 'GitHub session expired. Please log in again.' });
     }
     return res.status(500).json({ success: false, error: error.message });

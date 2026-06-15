@@ -208,7 +208,7 @@ export default function LandingPage() {
         </div>
       </nav>
 
-      <main className="pt-16 flex-grow">
+      <main className="pt-16 grow">
         {/* Hero Section */}
         <section className="relative min-h-[85vh] flex flex-col items-center justify-center overflow-hidden px-margin-mobile md:px-margin-desktop py-24">
           <ShaderBackground />
@@ -299,7 +299,7 @@ export default function LandingPage() {
           <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
             <h2 className="font-display-lg text-3xl md:text-5xl font-bold text-center text-on-surface dark:text-white mb-20">The Deployment Pipeline</h2>
             <div className="relative flex flex-col md:flex-row gap-12">
-              <div className="absolute top-1/2 left-0 w-full h-[1px] bg-border-subtle dark:bg-border-subtle hidden md:block z-0"></div>
+              <div className="absolute top-1/2 left-0 w-full h-px bg-border-subtle dark:bg-border-subtle hidden md:block z-0"></div>
               {/* Step 1 */}
               <div className="relative z-10 flex-1 bg-surface dark:bg-surface-dark p-8 rounded-xl border border-border-subtle dark:border-border-subtle shadow-sm transition-all duration-200">
                 <span className="font-code-sm text-primary dark:text-primary-fixed-dim mb-4 block">01 / STAGE</span>
@@ -328,7 +328,7 @@ export default function LandingPage() {
             <h2 className="font-display-lg text-3xl font-bold text-on-surface dark:text-white mb-4">Impact Proof</h2>
             <p className="text-on-surface-variant dark:text-surface-variant">Experience the transformation from "Rejected" to "Scheduled."</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-[1px] bg-border-subtle rounded-2xl overflow-hidden border border-border-subtle dark:border-border-subtle">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border-subtle rounded-2xl overflow-hidden border border-border-subtle dark:border-border-subtle">
             {/* Before */}
             <div className="bg-surface-container-lowest dark:bg-[#0c0f14] p-8 md:p-12 transition-colors duration-200">
               <div className="inline-block px-3 py-1 bg-error/15 text-error rounded-full text-xs font-bold mb-6 tracking-widest uppercase">Before PortfolioIQ</div>

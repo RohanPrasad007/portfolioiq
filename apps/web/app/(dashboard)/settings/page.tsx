@@ -85,7 +85,7 @@ export default function SettingsPage() {
               : "bg-error/10 border border-error/20 text-error"
           }`}
         >
-          <span className="material-symbols-outlined text-lg flex-shrink-0">
+          <span className="material-symbols-outlined text-lg shrink-0">
             {message.type === "success" ? "check_circle" : "error"}
           </span>
           <span>{message.text}</span>
@@ -94,7 +94,7 @@ export default function SettingsPage() {
 
       <form onSubmit={handleSubmit} className="space-y-6 glass-panel p-5 sm:p-6 md:p-8 rounded-xl">
         <h3 className="font-headline-md text-base md:text-lg text-on-surface dark:text-white font-semibold flex items-center gap-2 border-b border-black/10 dark:border-border-subtle pb-4">
-          <span className="material-symbols-outlined text-primary dark:text-primary-fixed-dim flex-shrink-0">account_circle</span>
+          <span className="material-symbols-outlined text-primary dark:text-primary-fixed-dim shrink-0">account_circle</span>
           Profile Information
         </h3>
 
@@ -131,32 +131,32 @@ export default function SettingsPage() {
         {/* Integration preferences */}
         <div className="space-y-4 pt-4">
           <h4 className="font-headline-md text-sm md:text-base text-on-surface dark:text-white font-semibold flex items-center gap-2">
-            <span className="material-symbols-outlined text-secondary dark:text-secondary-fixed-dim flex-shrink-0">settings_ethernet</span>
+            <span className="material-symbols-outlined text-secondary dark:text-secondary-fixed-dim shrink-0">settings_ethernet</span>
             Connected Integrations
           </h4>
           
           <div className="p-4 rounded-lg bg-surface-variant/5 border border-black/10 dark:border-border-subtle flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
             <div className="flex items-start gap-3">
-              <span className="material-symbols-outlined text-2xl text-primary dark:text-primary-fixed-dim flex-shrink-0">code</span>
+              <span className="material-symbols-outlined text-2xl text-primary dark:text-primary-fixed-dim shrink-0">code</span>
               <div>
                 <p className="text-on-surface dark:text-white text-sm font-medium leading-none">GitHub OAuth</p>
                 <p className="text-on-surface-variant dark:text-surface-variant text-xs mt-1 leading-relaxed">Used to scan public code files and documentation.</p>
               </div>
             </div>
-            <span className="px-2.5 py-0.5 rounded text-[10px] font-semibold bg-secondary/15 text-secondary dark:text-secondary-fixed-dim uppercase tracking-wider flex-shrink-0">
+            <span className="px-2.5 py-0.5 rounded text-[10px] font-semibold bg-secondary/15 text-secondary dark:text-secondary-fixed-dim uppercase tracking-wider shrink-0">
               Connected
             </span>
           </div>
 
           <div className="p-4 rounded-lg bg-surface-variant/5 border border-black/10 dark:border-border-subtle flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
             <div className="flex items-start gap-3">
-              <span className="material-symbols-outlined text-2xl text-primary dark:text-primary-fixed-dim flex-shrink-0">cloud_upload</span>
+              <span className="material-symbols-outlined text-2xl text-primary dark:text-primary-fixed-dim shrink-0">cloud_upload</span>
               <div>
                 <p className="text-on-surface dark:text-white text-sm font-medium leading-none">Cloudinary Storage</p>
                 <p className="text-on-surface-variant dark:text-surface-variant text-xs mt-1 leading-relaxed">Stores parsed candidate resume document PDF blobs.</p>
               </div>
             </div>
-            <span className="px-2.5 py-0.5 rounded text-[10px] font-semibold bg-secondary/15 text-secondary dark:text-secondary-fixed-dim uppercase tracking-wider flex-shrink-0">
+            <span className="px-2.5 py-0.5 rounded text-[10px] font-semibold bg-secondary/15 text-secondary dark:text-secondary-fixed-dim uppercase tracking-wider shrink-0">
               Connected
             </span>
           </div>

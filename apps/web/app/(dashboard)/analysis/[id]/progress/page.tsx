@@ -98,7 +98,7 @@ export default function AnalysisProgressPage() {
               <span className="w-2.5 h-2.5 rounded-full bg-primary/25"></span>
             </div>
           </div>
-          <div className="flex-grow p-5 font-code-sm text-[11px] md:text-xs text-[#00ff66] overflow-y-auto space-y-2.5 custom-scrollbar bg-[#020406]">
+          <div className="grow p-5 font-code-sm text-[11px] md:text-xs text-[#00ff66] overflow-y-auto space-y-2.5 custom-scrollbar bg-[#020406]">
             {logs.map((log, index) => (
               <div key={index} className="leading-relaxed whitespace-pre-wrap font-mono">
                 {log}

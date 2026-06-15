@@ -102,7 +102,7 @@ export default function DashboardPage() {
         <div className="col-span-12 lg:col-span-4 glass-panel p-6 rounded-xl flex flex-col justify-between overflow-hidden relative group">
           <div className="absolute -right-8 -top-8 w-32 h-32 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-500"></div>
           <div>
-            <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center text-primary dark:text-primary-fixed-dim mb-4 flex-shrink-0">
+            <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center text-primary dark:text-primary-fixed-dim mb-4 shrink-0">
               <span className="material-symbols-outlined">rocket_launch</span>
             </div>
             <h3 className="font-headline-md text-xl font-bold text-on-surface dark:text-white mb-2">New Analysis</h3>
@@ -266,7 +266,7 @@ export default function DashboardPage() {
                       </div>
                       
                       {/* Match score on the right */}
-                      <div className="flex-shrink-0 w-12 h-12 relative flex items-center justify-center">
+                      <div className="shrink-0 w-12 h-12 relative flex items-center justify-center">
                         <svg className="w-full h-full transform -rotate-90">
                           <circle className="text-surface-variant/10" cx="24" cy="24" fill="transparent" r="20" stroke="currentColor" strokeWidth="2.5"></circle>
                           <circle 

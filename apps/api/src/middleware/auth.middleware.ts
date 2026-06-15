@@ -51,13 +51,26 @@ export const requireAuth = async (req: AuthRequest, res: Response, next: NextFun
       const avatarUrl = decoded.picture || `https://api.dicebear.com/7.x/bottts/svg?seed=${username}`;
       const githubAccessToken = decoded.accessToken || '';
 
-      user = await User.create({
-        githubId,
-        username,
-        email,
-        avatarUrl,
-        githubAccessToken,
-      });
+      try {
+        user = await User.create({
+          githubId,
+          username,
+          email,
+          avatarUrl,
+          githubAccessToken,
+        });
+      } catch (createError: any) {
+        // Handle race condition: if another concurrent request already created the user,
+        // we'll get a duplicate key error (E11000). In that case, fetch the user.
+        if (createError.code === 11000) {
+          user = await User.findOne({ githubId });
+          if (!user) {
+            throw createError;
+          }
+        } else {
+          throw createError;
+        }
+      }
     } else {
       const githubAccessToken = decoded.accessToken || '';
       if (githubAccessToken && user.githubAccessToken !== githubAccessToken) {
@@ -71,7 +84,8 @@ export const requireAuth = async (req: AuthRequest, res: Response, next: NextFun
     req.isDemoMode = githubId === 'demo-user';
     req.githubAccessToken = user.githubAccessToken;
     next();
-  } catch (error) {
+  } catch (error: any) {
+    console.error('[AUTH ERROR]', error.message);
     return res.status(401).json({ success: false, error: 'Invalid or expired token' });
   }
 };

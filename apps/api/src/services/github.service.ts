@@ -22,7 +22,10 @@ export const fetchTopRepos = async (
   username: string,
   accessToken?: string
 ): Promise<GitHubRepoSummary[]> => {
-  const octokit = new Octokit({ auth: accessToken || env.GITHUB_TOKEN });
+  if (!accessToken) {
+    throw { status: 401, message: 'GitHub access token is required' };
+  }
+  const octokit = new Octokit({ auth: accessToken });
 
   const { data: repos } = await withBackoff(() =>
     octokit.rest.repos.listForUser({

@@ -68,9 +68,9 @@ export default function LoginPage() {
             </button>
 
             <div className="relative flex py-3 items-center">
-              <div className="flex-grow border-t border-border-subtle dark:border-border-subtle"></div>
-              <span className="flex-shrink mx-4 text-xs uppercase tracking-wider text-on-surface-variant dark:text-surface-variant">Or</span>
-              <div className="flex-grow border-t border-border-subtle dark:border-border-subtle"></div>
+              <div className="grow border-t border-border-subtle dark:border-border-subtle"></div>
+              <span className="shrink mx-4 text-xs uppercase tracking-wider text-on-surface-variant dark:text-surface-variant">Or</span>
+              <div className="grow border-t border-border-subtle dark:border-border-subtle"></div>
             </div>
 
             <button

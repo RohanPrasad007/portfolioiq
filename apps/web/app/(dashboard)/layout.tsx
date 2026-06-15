@@ -30,8 +30,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       if (session) {
         token = (session as any).accessToken;
         setClientToken(token);
-      } else if (isDemo) {
-        token = "demo-token";
+      } else {
+        // Read demo_token directly from localStorage to avoid race condition
+        // with the isDemo state, which may not have been set yet on first render
+        const demoToken = typeof window !== "undefined" ? window.localStorage.getItem("demo_token") : null;
+        if (demoToken) {
+          token = demoToken;
+        }
       }
 
       if (!token && status !== "loading") {
@@ -116,7 +121,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       </aside>
 
       {/* Main Canvas */}
-      <div className="md:ml-60 flex-grow h-screen flex flex-col overflow-hidden w-full">
+      <div className="md:ml-60 grow h-screen flex flex-col overflow-hidden w-full">
         
         {/* Sticky Demo Banner */}
         {isDemo && (
@@ -127,7 +132,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             </div>
             <button 
               onClick={handleSignOut}
-              className="underline font-bold text-xs hover:opacity-85 cursor-pointer flex-shrink-0"
+              className="underline font-bold text-xs hover:opacity-85 cursor-pointer shrink-0"
             >
               Sign in
             </button>
@@ -135,7 +140,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         )}
 
         {/* Header Bar */}
-        <header className="sticky top-0 h-16 flex items-center justify-between px-margin-mobile md:px-margin-desktop bg-surface/80 dark:bg-surface-dark/80 backdrop-blur-xl z-40 border-b border-border-subtle dark:border-border-subtle flex-shrink-0">
+        <header className="sticky top-0 h-16 flex items-center justify-between px-margin-mobile md:px-margin-desktop bg-surface/80 dark:bg-surface-dark/80 backdrop-blur-xl z-40 border-b border-border-subtle dark:border-border-subtle shrink-0">
           <div>
             {/* Desktop greeting */}
             <div className="hidden md:block">
@@ -214,7 +219,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </header>
 
         {/* Page Content Viewport */}
-        <main className="flex-grow overflow-y-auto custom-scrollbar p-margin-mobile md:p-margin-desktop pb-24 md:pb-margin-desktop relative">
+        <main className="grow overflow-y-auto custom-scrollbar p-margin-mobile md:p-margin-desktop pb-24 md:pb-margin-desktop relative">
           {children}
         </main>
       </div>

@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { apiClient, setClientToken } from './api-client';
 
 export interface GithubProfileData {
   username: string;
@@ -27,19 +28,16 @@ export const useProfileStore = create<ProfileState>((set, get) => ({
 
     set({ isLoading: true, error: null });
     try {
-      const res = await fetch("http://localhost:4000/api/github/profile", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      const json = await res.json();
-      if (json.success) {
-        set({ profile: json.data, isLoading: false });
+      setClientToken(token);
+      const res = await apiClient.get('/api/github/profile');
+      if (res.data && res.data.success) {
+        set({ profile: res.data.data, isLoading: false });
       } else {
-        set({ error: json.error || 'Failed to load profile', isLoading: false });
+        set({ error: res.data?.error || 'Failed to load profile', isLoading: false });
       }
     } catch (err: any) {
-      set({ error: err.message, isLoading: false });
+      const errMsg = err.response?.data?.error || err.message || 'Failed to load profile';
+      set({ error: errMsg, isLoading: false });
     }
   },
   clearProfile: () => set({ profile: null }),

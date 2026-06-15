@@ -15,6 +15,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       if (account?.access_token) {
         token.accessToken = account.access_token;
         token.login = (profile as any)?.login;
+        token.githubId = account.providerAccountId;
       }
       return token;
     },
@@ -23,7 +24,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         const secret = process.env.NEXTAUTH_SECRET || 'fallback-secret-for-development-only-needs-to-be-replaced';
         const signedToken = jwt.sign(
           {
-            sub: token.sub,
+            sub: token.githubId || token.sub,
             login: token.login,
             email: token.email || session.user?.email,
             picture: token.picture || session.user?.image,

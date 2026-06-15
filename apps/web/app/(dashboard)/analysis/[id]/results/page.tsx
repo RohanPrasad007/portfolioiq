@@ -92,7 +92,7 @@ export default function AnalysisResultsPage() {
         
         <div className="flex flex-col md:flex-row items-center gap-6 z-10 text-center md:text-left">
           {/* Match Rate Circle */}
-          <div className="w-24 h-24 relative flex items-center justify-center flex-shrink-0">
+          <div className="w-24 h-24 relative flex items-center justify-center shrink-0">
             <svg className="w-full h-full transform -rotate-90">
               <circle className="text-surface-variant/10" cx="48" cy="48" fill="transparent" r="42" stroke="currentColor" strokeWidth="5"></circle>
               <circle 
@@ -125,7 +125,7 @@ export default function AnalysisResultsPage() {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-3 z-10 w-full lg:w-auto flex-shrink-0">
+        <div className="flex flex-col sm:flex-row gap-3 z-10 w-full lg:w-auto shrink-0">
           <button 
             onClick={() => router.push("/dashboard")}
             className="w-full sm:w-auto px-5 py-2.5 bg-surface-variant/10 border border-black/10 dark:border-border-subtle text-on-surface dark:text-white font-semibold rounded-lg hover:bg-surface-variant/20 transition-primary cursor-pointer active:scale-[0.98] text-center"
@@ -145,7 +145,7 @@ export default function AnalysisResultsPage() {
       <div className="flex border-b border-black/10 dark:border-border-subtle gap-6 overflow-x-auto whitespace-nowrap scrollbar-none pb-px">
         <button
           onClick={() => setActiveTab("resume")}
-          className={`pb-3 text-sm font-semibold tracking-wide transition-all border-b-2 cursor-pointer flex-shrink-0 ${
+          className={`pb-3 text-sm font-semibold tracking-wide transition-all border-b-2 cursor-pointer shrink-0 ${
             activeTab === "resume" 
               ? "border-primary text-primary dark:text-primary-fixed-dim font-bold" 
               : "border-transparent text-on-surface-variant dark:text-surface-variant hover:text-on-surface dark:hover:text-white"
@@ -155,7 +155,7 @@ export default function AnalysisResultsPage() {
         </button>
         <button
           onClick={() => setActiveTab("github")}
-          className={`pb-3 text-sm font-semibold tracking-wide transition-all border-b-2 cursor-pointer flex-shrink-0 ${
+          className={`pb-3 text-sm font-semibold tracking-wide transition-all border-b-2 cursor-pointer shrink-0 ${
             activeTab === "github" 
               ? "border-primary text-primary dark:text-primary-fixed-dim font-bold" 
               : "border-transparent text-on-surface-variant dark:text-surface-variant hover:text-on-surface dark:hover:text-white"
@@ -165,7 +165,7 @@ export default function AnalysisResultsPage() {
         </button>
         <button
           onClick={() => setActiveTab("critique")}
-          className={`pb-3 text-sm font-semibold tracking-wide transition-all border-b-2 cursor-pointer flex-shrink-0 ${
+          className={`pb-3 text-sm font-semibold tracking-wide transition-all border-b-2 cursor-pointer shrink-0 ${
             activeTab === "critique" 
               ? "border-primary text-primary dark:text-primary-fixed-dim font-bold" 
               : "border-transparent text-on-surface-variant dark:text-surface-variant hover:text-on-surface dark:hover:text-white"
@@ -186,7 +186,7 @@ export default function AnalysisResultsPage() {
               {/* Bullet Improvements */}
               <div className="glass-panel p-5 sm:p-6 rounded-xl space-y-6">
                 <h3 className="font-headline-md text-lg text-on-surface dark:text-white font-semibold flex items-center gap-2">
-                  <span className="material-symbols-outlined text-secondary dark:text-secondary-fixed-dim flex-shrink-0">verified_user</span>
+                  <span className="material-symbols-outlined text-secondary dark:text-secondary-fixed-dim shrink-0">verified_user</span>
                   Resume Experience Optimization
                 </h3>
                 
@@ -195,7 +195,7 @@ export default function AnalysisResultsPage() {
                     <div key={idx} className="border border-black/10 dark:border-border-subtle rounded-xl overflow-hidden bg-surface-variant/5 dark:bg-surface-dark/40">
                       {/* Original bullet */}
                       <div className="p-4 bg-error/5 border-b border-black/10 dark:border-border-subtle flex gap-3">
-                        <span className="material-symbols-outlined text-error text-[20px] mt-0.5 flex-shrink-0">close</span>
+                        <span className="material-symbols-outlined text-error text-[20px] mt-0.5 shrink-0">close</span>
                         <div className="space-y-1">
                           <span className="text-[10px] font-label-caps text-error font-bold">ORIGINAL EXPERIENCE EXCERPT</span>
                           <p className="text-on-surface-variant dark:text-surface-variant text-sm">{bullet.original}</p>
@@ -204,7 +204,7 @@ export default function AnalysisResultsPage() {
                       
                       {/* Improved bullet */}
                       <div className="p-4 bg-primary/5 flex gap-3 border-b border-black/10 dark:border-border-subtle">
-                        <span className="material-symbols-outlined text-primary dark:text-secondary-fixed-dim text-[20px] mt-0.5 flex-shrink-0" style={{ fontVariationSettings: "'FILL' 1" }}>stars</span>
+                        <span className="material-symbols-outlined text-primary dark:text-secondary-fixed-dim text-[20px] mt-0.5 shrink-0" style={{ fontVariationSettings: "'FILL' 1" }}>stars</span>
                         <div className="space-y-1">
                           <span className="text-[10px] font-label-caps text-primary dark:text-secondary-fixed-dim font-bold">OPTIMIZED AI RECOMMENDATION</span>
                           <p className="text-on-surface dark:text-white text-sm font-medium leading-relaxed">{bullet.improved}</p>
@@ -213,7 +213,7 @@ export default function AnalysisResultsPage() {
 
                       {/* Explanation */}
                       <div className="p-3.5 bg-surface-variant/5 text-on-surface-variant dark:text-surface-variant text-xs flex items-center gap-2 font-medium">
-                        <span className="material-symbols-outlined text-[16px] text-primary dark:text-primary-fixed-dim flex-shrink-0">info</span>
+                        <span className="material-symbols-outlined text-[16px] text-primary dark:text-primary-fixed-dim shrink-0">info</span>
                         <span className="leading-relaxed">{bullet.reason}</span>
                       </div>
                     </div>
@@ -226,7 +226,7 @@ export default function AnalysisResultsPage() {
           {activeTab === "github" && (
             <div className="glass-panel p-5 sm:p-6 rounded-xl space-y-6">
               <h3 className="font-headline-md text-lg text-on-surface dark:text-white font-semibold flex items-center gap-2">
-                <span className="material-symbols-outlined text-primary dark:text-primary-fixed-dim flex-shrink-0">code</span>
+                <span className="material-symbols-outlined text-primary dark:text-primary-fixed-dim shrink-0">code</span>
                 GitHub Repository Auditing Report
               </h3>
               
@@ -241,7 +241,7 @@ export default function AnalysisResultsPage() {
                           </h4>
                           <span className="text-xs text-primary dark:text-primary-fixed-dim font-medium">{repo.language}</span>
                         </div>
-                        <div className="flex items-center gap-1 px-2.5 py-0.5 rounded bg-surface-variant/10 border border-black/10 dark:border-border-subtle text-xs font-semibold text-secondary dark:text-secondary-fixed-dim flex-shrink-0">
+                        <div className="flex items-center gap-1 px-2.5 py-0.5 rounded bg-surface-variant/10 border border-black/10 dark:border-border-subtle text-xs font-semibold text-secondary dark:text-secondary-fixed-dim shrink-0">
                           <span className="material-symbols-outlined text-[14px]" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
                           {repo.stars}
                         </div>
@@ -252,7 +252,7 @@ export default function AnalysisResultsPage() {
                         <ul className="space-y-2">
                           {repo.findings.map((finding, fIdx) => (
                             <li key={fIdx} className="flex items-start gap-2.5 text-sm">
-                              <span className="material-symbols-outlined text-secondary dark:text-secondary-fixed-dim text-lg mt-0.5 flex-shrink-0">check_circle</span>
+                              <span className="material-symbols-outlined text-secondary dark:text-secondary-fixed-dim text-lg mt-0.5 shrink-0">check_circle</span>
                               <span className="text-on-surface/90 dark:text-white/90 leading-relaxed">{finding}</span>
                             </li>
                           ))}
@@ -273,7 +273,7 @@ export default function AnalysisResultsPage() {
           {activeTab === "critique" && (
             <div className="glass-panel p-5 sm:p-6 rounded-xl space-y-4">
               <h3 className="font-headline-md text-lg text-on-surface dark:text-white font-semibold flex items-center gap-2">
-                <span className="material-symbols-outlined text-secondary dark:text-secondary-fixed-dim flex-shrink-0">psychology</span>
+                <span className="material-symbols-outlined text-secondary dark:text-secondary-fixed-dim shrink-0">psychology</span>
                 Career Coach Assessment Critique
               </h3>
               
@@ -290,7 +290,7 @@ export default function AnalysisResultsPage() {
           {/* Missing keywords */}
           <div className="glass-panel p-5 sm:p-6 rounded-xl space-y-4">
             <h4 className="font-headline-md text-base text-on-surface dark:text-white font-semibold flex items-center gap-1.5">
-              <span className="material-symbols-outlined text-error text-lg flex-shrink-0">dangerous</span>
+              <span className="material-symbols-outlined text-error text-lg shrink-0">dangerous</span>
               Missing Keywords ({analysis.missingKeywords.length})
             </h4>
             <p className="text-on-surface-variant dark:text-surface-variant text-xs leading-relaxed">
@@ -308,7 +308,7 @@ export default function AnalysisResultsPage() {
           {/* Found keywords */}
           <div className="glass-panel p-5 sm:p-6 rounded-xl space-y-4">
             <h4 className="font-headline-md text-base text-on-surface dark:text-white font-semibold flex items-center gap-1.5">
-              <span className="material-symbols-outlined text-secondary dark:text-secondary-fixed-dim text-lg flex-shrink-0">check_circle</span>
+              <span className="material-symbols-outlined text-secondary dark:text-secondary-fixed-dim text-lg shrink-0">check_circle</span>
               Matched Keywords ({analysis.foundKeywords.length})
             </h4>
             <p className="text-on-surface-variant dark:text-surface-variant text-xs leading-relaxed">

@@ -117,7 +117,7 @@ export default function NewAnalysisPage() {
 
       {error && (
         <div className="p-4 rounded-lg bg-error/10 border border-error/20 text-error flex items-start gap-3 text-sm">
-          <span className="material-symbols-outlined text-lg flex-shrink-0">error</span>
+          <span className="material-symbols-outlined text-lg shrink-0">error</span>
           <span>{error}</span>
         </div>
       )}
@@ -209,7 +209,7 @@ export default function NewAnalysisPage() {
             checked={includeGithub}
             onChange={(e) => setIncludeGithub(e.target.checked)}
             disabled={uploading}
-            className="w-4 h-4 rounded text-primary bg-white dark:bg-surface-dark border-black/20 dark:border-border-subtle focus:ring-0 focus:ring-offset-0 cursor-pointer mt-0.5 flex-shrink-0"
+            className="w-4 h-4 rounded text-primary bg-white dark:bg-surface-dark border-black/20 dark:border-border-subtle focus:ring-0 focus:ring-offset-0 cursor-pointer mt-0.5 shrink-0"
           />
           <label htmlFor="includeGithub" className="flex flex-col cursor-pointer select-none">
             <span className="text-on-surface dark:text-white text-sm font-medium">Audit GitHub Repositories</span>
