@@ -590,17 +590,12 @@ export default function LandingPage() {
               The Deployment Pipeline
             </motion.h2>
 
-            <motion.div 
-              className="relative flex flex-col md:flex-row gap-12"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-              variants={staggerContainer}
-            >
-              {/* Animated Connector Line */}
-              <div className="absolute top-1/2 left-0 w-full h-px hidden md:block z-0 overflow-hidden">
+            {/* Stepper Timeline Header */}
+            <div className="relative hidden md:block mb-10">
+              {/* Connector Line */}
+              <div className="absolute top-1/2 left-0 w-full h-[2px] -translate-y-1/2 z-0 overflow-hidden">
                 <motion.div 
-                  className="h-full bg-linear-to-r from-primary/40 via-primary to-primary/40 dark:from-primary-fixed-dim/30 dark:via-primary-fixed-dim/60 dark:to-primary-fixed-dim/30"
+                  className="h-full bg-linear-to-r from-primary/25 via-primary to-primary/25 dark:from-primary-fixed-dim/20 dark:via-primary-fixed-dim/50 dark:to-primary-fixed-dim/20"
                   initial={{ scaleX: 0 }}
                   whileInView={{ scaleX: 1 }}
                   viewport={{ once: true }}
@@ -609,6 +604,35 @@ export default function LandingPage() {
                 />
               </div>
 
+              {/* Stepper Nodes */}
+              <div className="relative z-10 flex flex-row gap-12">
+                {steps.map((step, idx) => (
+                  <div key={idx} className="flex-1 flex justify-center">
+                    <motion.div
+                      className={`w-10 h-10 rounded-full flex items-center justify-center border-2 text-sm font-bold font-code-sm transition-all duration-300 ${
+                        step.highlighted
+                          ? "bg-primary text-white border-primary shadow-lg shadow-primary/30"
+                          : "bg-surface-container-low dark:bg-[#0a0d12] text-on-surface-variant dark:text-surface-variant border-outline-variant/60 dark:border-border-subtle"
+                      }`}
+                      initial={{ scale: 0, opacity: 0 }}
+                      whileInView={{ scale: 1, opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ type: "spring", stiffness: 300, damping: 20, delay: 0.5 + idx * 0.15 }}
+                    >
+                      {step.num}
+                    </motion.div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <motion.div 
+              className="relative flex flex-col md:flex-row gap-12"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
+              variants={staggerContainer}
+            >
               {steps.map((step, idx) => (
                 <motion.div
                   key={idx}
@@ -624,8 +648,8 @@ export default function LandingPage() {
                     <>
                       <div className="dot-grid absolute inset-0 rounded-2xl opacity-30" />
                       <div className="relative z-10">
-                        <span className="text-5xl font-bold text-white/25 font-display-lg block mb-2">{step.num}</span>
-                        <span className="font-code-sm text-white/60 mb-4 block text-xs tracking-widest">{step.label}</span>
+                        <span className="text-5xl font-bold text-white font-display-lg block mb-2">{step.num}</span>
+                        <span className="font-code-sm text-white mb-4 block text-xs tracking-widest">{step.label}</span>
                         <h4 className="font-display-lg text-xl mb-3 font-semibold text-white">{step.title}</h4>
                         <p className="font-body-base text-white/90">{step.description}</p>
                       </div>
@@ -674,7 +698,6 @@ export default function LandingPage() {
               <div className="relative z-10">
                 <div className="inline-block px-3 py-1 bg-error/15 text-error rounded-full text-xs font-bold mb-6 tracking-widest uppercase">Before PortfolioIQ</div>
                 <div className="space-y-6 opacity-60">
-                  <div className="h-6 bg-surface-variant/20 rounded w-3/4"></div>
                   <motion.ul 
                     className="space-y-4"
                     variants={staggerContainer}
@@ -720,7 +743,6 @@ export default function LandingPage() {
               <div className="relative z-10">
                 <div className="inline-block px-3 py-1 bg-primary/10 text-primary dark:text-primary-fixed-dim rounded-full text-xs font-bold mb-6 tracking-widest uppercase">After AI Optimization</div>
                 <div className="space-y-6">
-                  <div className="h-6 bg-primary/10 rounded w-1/2"></div>
                   <motion.ul 
                     className="space-y-4"
                     variants={staggerContainer}
