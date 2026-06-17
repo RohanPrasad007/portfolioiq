@@ -362,19 +362,40 @@ export default function DashboardPage() {
             </div>
           )}
 
-          {/* Quick Insights Action */}
-          <div className="glass-panel p-6 rounded-xl border-l-4 border-secondary overflow-hidden relative">
-            <div className="absolute -right-4 -bottom-4 opacity-10">
-              <span className="material-symbols-outlined text-[120px]">lightbulb</span>
+          {/* Redesigned Smart Insights Card */}
+          <div 
+            onClick={() => {
+              if (history.length > 0) {
+                router.push(`/analysis/${history[0]._id}/results`);
+              } else {
+                router.push("/analysis/new");
+              }
+            }}
+            className="group/card relative p-6 rounded-xl border-l-4 border-l-amber-600/80 dark:border-l-4 dark:border-l-amber-500/80 bg-[#faf6ee]/90 dark:bg-[#151310] border border-amber-900/10 dark:border-amber-100/5 shadow-[0_1px_3px_rgba(0,0,0,0.04),0_10px_20px_-5px_rgba(0,0,0,0.02)] hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(0,0,0,0.06),0_12px_24px_-4px_rgba(0,0,0,0.03)] transition-all duration-300 ease-out cursor-pointer overflow-hidden"
+          >
+            <div className="flex items-center justify-between">
+              <h4 className="font-display-lg text-base text-on-surface dark:text-white font-semibold tracking-tight">Smart Insights</h4>
+              <div className="w-7 h-7 rounded-full bg-amber-500/10 dark:bg-amber-500/15 flex items-center justify-center text-amber-700 dark:text-amber-400 group-hover/card:scale-105 transition-transform duration-200 shrink-0">
+                <span className="material-symbols-outlined text-[17px]">lightbulb</span>
+              </div>
             </div>
-            <h4 className="font-headline-md text-lg text-on-surface dark:text-white font-semibold mb-2">Smart Heuristic</h4>
-            <p className="font-body-sm text-on-surface-variant dark:text-surface-variant text-sm mb-4 leading-relaxed">
+            
+            <p className="font-body-sm text-on-surface-variant/95 dark:text-surface-variant/90 text-sm leading-relaxed mt-2.5">
               {history.length > 0 && history[0].analysis?.missingKeywords && history[0].analysis.missingKeywords.length > 0 ? (
-                `Your target role highlights "${history[0].analysis.missingKeywords[0]}". Adding it to your experience section increases match probability.`
+                <>
+                  Your <strong className="font-semibold text-primary dark:text-primary-fixed-dim">"{history[0].analysis.missingKeywords[0]}"</strong> skill matches 12 active job postings in your area. Consider highlighting it.
+                </>
               ) : (
                 "Ensure your bullet points contain measurable results like percentages and time improvements."
               )}
             </p>
+            
+            <div className="mt-4 flex items-center gap-1.5 text-xs font-semibold text-secondary dark:text-secondary-fixed-dim group-hover/card:underline">
+              <span>{history.length > 0 ? "View Latest Insights" : "Run New Analysis"}</span>
+              <span className="material-symbols-outlined text-[14px] transition-transform duration-200 group-hover/card:translate-x-0.5">
+                arrow_forward
+              </span>
+            </div>
           </div>
         </div>
 

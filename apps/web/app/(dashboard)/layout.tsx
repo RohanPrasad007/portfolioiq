@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useProfileStore } from "@/lib/profile-store";
 import { setClientToken } from "@/lib/api-client";
 import { useTheme } from "../providers";
+import ThemeToggle from "@/components/ThemeToggle";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const { data: session, status } = useSession();
@@ -14,7 +15,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const pathname = usePathname();
   const [isDemo, setIsDemo] = useState(false);
   const { profile: userProfile, fetchProfile } = useProfileStore();
-  const { theme, setTheme } = useTheme();
+  const { theme } = useTheme();
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -102,7 +103,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           <div className="p-4 rounded-lg bg-primary/5 border border-primary/20">
             <p className="font-label-caps text-primary dark:text-primary-fixed-dim text-xs font-bold mb-1">PRO PLAN</p>
             <p className="font-body-sm text-on-surface-variant dark:text-surface-variant text-xs mb-3">Unlimited AI deep-scans</p>
-            <button className="w-full py-2 bg-primary text-white text-[12px] font-semibold rounded hover:bg-primary/90 transition-colors">Upgrade to Pro</button>
+            <button 
+              onClick={() => router.push("/pricing")}
+              className="w-full py-2 bg-primary text-white text-[12px] font-semibold rounded hover:bg-primary/90 transition-colors cursor-pointer"
+            >
+              Upgrade to Pro
+            </button>
           </div>
           <div className="pt-4 border-t border-border-subtle dark:border-border-subtle space-y-1">
             <a className="flex items-center gap-3 px-2 py-2 text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors text-sm" href="#">
@@ -164,30 +170,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           </div>
           <div className="flex items-center gap-4 md:gap-6">
             {/* Two-button Theme Switcher */}
-            <div className="flex items-center gap-1.5 p-1 bg-surface-variant/10 dark:bg-surface-variant/5 rounded-full border border-border-subtle dark:border-transparent">
-              <button 
-                onClick={() => setTheme("light")}
-                className={`p-1.5 rounded-full flex items-center justify-center transition-all duration-150 active:scale-95 ${
-                  theme === "light" 
-                    ? "bg-primary text-white shadow-sm" 
-                    : "text-on-surface-variant dark:text-surface-variant hover:text-primary"
-                }`}
-                title="Light Mode"
-              >
-                <span className="material-symbols-outlined text-[18px]">light_mode</span>
-              </button>
-              <button 
-                onClick={() => setTheme("dark")}
-                className={`p-1.5 rounded-full flex items-center justify-center transition-all duration-150 active:scale-95 ${
-                  theme === "dark" 
-                    ? "bg-primary text-white shadow-sm" 
-                    : "text-on-surface-variant dark:text-surface-variant hover:text-primary"
-                }`}
-                title="Dark Mode"
-              >
-                <span className="material-symbols-outlined text-[18px]">dark_mode</span>
-              </button>
-            </div>
+            <ThemeToggle />
             {/* Desktop Profile Info */}
             <div className="hidden md:flex items-center gap-3 pl-4 border-l border-border-subtle dark:border-border-subtle">
               <div className="text-right">
